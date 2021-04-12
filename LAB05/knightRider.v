@@ -41,7 +41,7 @@ always @(*) begin
 			flagNext = 1;
 			if(dataOutNext == 8'b10000000)begin
 				flagNext = 0;
-		end
+			end
 		end
 	end
 	else begin
