@@ -1,6 +1,6 @@
 // Göksel can ÖNAL
 // S011827
-module knightRider_part4(clk, rst, dataOut);
+module knightRider(clk, rst, dataOut);
 
 input clk, rst;
 output reg [7:0] dataOut;
@@ -23,23 +23,23 @@ always @(*) begin
 	counterNext = counter;
 	flagNext = flag;
 	if(rst) begin
-		dataOutNext = 8'b10000001;
+		dataOutNext = 8'b10000000;
 		counterNext = 0;
 		flagNext = 0;
 	end
 	else if(counter == COUNT -1) begin
-		if(flag == 0) begin
-			dataOutNext = {dataOut[4], dataOut[7:5], dataOut[2:0], dataOut[3]};
+		if(flag == 0)begin
+			dataOutNext = {dataOut[0], dataOut[7:1]};
 			counterNext = 0;
-		if(dataOutNext == 8'b00011000) begin
+		if(dataOutNext == 8'b00000001)begin
 			flagNext = 1;
 		end
 		end
 		else begin
-			dataOutNext = {dataOut[6:4], dataOut[7], dataOut[0], dataOut[3:1]};
+			dataOutNext = {dataOut[6:0], dataOut[7]};
 			counterNext = 0;
 			flagNext = 1;
-			if(dataOutNext == 8'b10000001)begin
+			if(dataOutNext == 8'b10000000)begin
 				flagNext = 0;
 			end
 		end
@@ -50,6 +50,4 @@ always @(*) begin
 end
 
 endmodule
-
-
 
